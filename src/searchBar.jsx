@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import apiSearch from './apiSearch.js';
+import AboutBar from './aboutBar.jsx';
 
 
 class SearchBar extends Component {
@@ -8,7 +9,7 @@ class SearchBar extends Component {
     super(props);
 
     this.state = {
-      value: ''
+      value: '',
     };
   }
 
@@ -18,7 +19,18 @@ class SearchBar extends Component {
   }
 
   _onSearchClick() {
-    
+    let information;
+    if (this.state.value.length) { 
+      apiSearch.fetchData(this.state.value).then(data => {
+        data = JSON.parse(data);
+        console.log(data);
+        if (data) { 
+          information = new AboutBar(data);
+         // this.setState({ content: data.Title });
+        }
+      });
+    }
+    return false;
   }
  
 

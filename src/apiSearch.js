@@ -1,13 +1,20 @@
-const imdb = require('imdb-api');
+import 'whatwg-fetch';
 
-export default class apiSearch {
-  searchData(params) {
-    let movie;
-    let things = params;
-    imdb.getReq((err, things) => {
-      movie = things;
+const API_URL = 'http://www.omdbapi.com/';
+
+const _generateQuesryString = (params = null) => {
+  params = params.replace(/\ /gi, "+");
+  return API_URL + '?t=' + params + '&y=&plot=&r=json';
+};
+  
+export default class apiSearch { 
+
+  static fetchData(params) { 
+    let url = _generateQuesryString(params);
+    
+    return fetch(url, {
+    }).then(response => {
+      return response.text();
     });
-
-    return movie;
   }
 }

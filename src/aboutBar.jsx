@@ -1,21 +1,19 @@
 import React, {Component} from 'react';
-
+import SearchBar from './searchBar.jsx';
 
 class AboutBar extends Component {
 
   constructor(props){
     super(props);
-
+   
     this.state = {
-      content: {
-
-      },
+      content: props
     };
   }
 
   render() {
     return <div className="about-bar">
-             Content
+             <div> {this.state.content} </div>
            </div>
   }
 }
