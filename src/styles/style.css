@@ -1,0 +1,100 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+  background-image: url(img/back.jpg); 
+}
+
+.container {
+  font-family: Monospace, Verdana, sans-serif;
+}
+
+.search-input {
+  margin: 25px 2px 10px 0px;
+  height: 35px;
+  width: 93.5%;
+}
+
+.search-input:active {
+  border: 1px solid #3582ff;
+}
+
+.search {
+  height: 100px;
+  width: 100%;
+}
+
+.info {
+  color: #000;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 20px;
+}
+
+.btn {
+  height: 40px;
+  width: 6%;
+}
+
+#image {
+  margin: 20px 0px 10px 15px;
+  border: 2px solid #000;
+  border-radius: 5px;
+  transition-duration: 0.5s;
+}
+
+#image:hover {
+  transform: scale(1.1);
+  transition-duration: 0.5s;
+}
+
+.categories, .results {
+  margin-top: 40px;
+  font-size: 20px;
+}
+
+.results p {
+  padding-left: 10px;
+}
+
+.categories p, .results p, .categories1 p, .results1 p {
+  margin-bottom: 30px;
+}
+
+.categories1, .results1 {
+  margin: 20px 0px 0px 20px;
+  font-size: 20px;
+}
+
+p.actors, p.plot {
+  height: 60px;
+}
+
+.stars {
+  font-size: 20px;
+  margin-top: 40px;
+  background: #aacbff;
+  border-radius: 10px;
+}
+
+.stars:hover {
+  background: #3582ff;
+}
+
+.stars p {
+  margin-left: 60px;
+  display: inline;
+}
+
+.stars p:last-child {
+  margin-left: 20px;
+}
+
+.error {
+  text-align: center;
+  font-size: 24px;
+  color: #000;
+  background: rgba(255, 255, 255, 0.6);;
+}
+

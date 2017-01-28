@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 import apiSearch from './apiSearch.js';
-import AboutBar from './aboutBar.jsx';
-
 
 class SearchBar extends Component {
   
@@ -10,8 +8,9 @@ class SearchBar extends Component {
 
     this.state = {
       value: '',
-      content: [],
-      default: []
+      content: ["true"],
+      default: [],
+      stars: ''
     };
   }
 
@@ -23,10 +22,11 @@ class SearchBar extends Component {
   _onSearchClick() {
     let information = [];
     let defaultInfo = [];
+    let star;
     if (this.state.value.length) { 
       apiSearch.fetchData(this.state.value).then(data => {
         data = JSON.parse(data);
-        console.log(data);
+        //console.log(data);
         if (data) { 
           for (let key in data) {
             information.push(data[key]);
@@ -34,7 +34,7 @@ class SearchBar extends Component {
           }
           this.setState({content: information});
           this.setState({default: defaultInfo});
-          //console.log(information);
+          this.setState({stars: data.imdbRating});
         }
       });
     }
@@ -42,21 +42,124 @@ class SearchBar extends Component {
   }
 
   _contentOnPage() {
-    if (this.state.content) {
-      return  <div className="row"> 
-                <div className="title"> {this.state.default[0]}  {this.state.content[0]} </div>
-                <div> {this.state.default[1]}  {this.state.content[1]} </div>
+    if (this.state.content.length > 3) {
+       return   <div className="container">
+                  <div className="row info">
+                  <div className="col-md-4">
+                    <img id="image" src={this.state.content[13]} alt="Poster" />
+                  </div>
+                  <div className="col-md-1 categories">
+                    <p> 
+                      {this.state.default[0]}:
+                    </p>
+                    <p>
+                      {this.state.default[1]}:
+                    </p>
+                    <p>
+                      {this.state.default[2]}:
+                    </p>
+                    <p>
+                      {this.state.default[3]}:
+                    </p>
+                    <p>
+                      {this.state.default[4]}:
+                    </p>
+                    <p>
+                      {this.state.default[5]}:
+                    </p>
+                    <p>
+                      {this.state.default[6]}:
+                    </p>
+                  </div>
+                  <div className="col-md-4 results">
+                    <p> 
+                      {this.state.content[0]}
+                    </p>
+                    <p>
+                      {this.state.content[1]}
+                    </p>
+                    <p>
+                      {this.state.content[2]}
+                    </p>
+                    <p>
+                      {this.state.content[3]}
+                    </p>
+                    <p>
+                      {this.state.content[4]}
+                    </p>
+                    <p>
+                      {this.state.content[5]}
+                    </p>
+                    <p>
+                      {this.state.content[6]}
+                    </p>
+                  </div>
+                  <div className="col-md-3 stars">
+                    <p>Rating:</p>
+                    <p>{this.state.stars}</p>
+                  </div>
+                  </div>
+                  <div className="row info">
+                    <div className="col-md-2 categories1">
+                      <p className="actors">
+                        {this.state.default[8]}:
+                      </p>
+                      <p className="plot">
+                        {this.state.default[9]}:
+                      </p>
+                      <p>
+                        {this.state.default[10]}:
+                      </p>
+                      <p>
+                        {this.state.default[11]}:
+                      </p>
+                      <p>
+                        {this.state.default[12]}:
+                      </p>
+                      <p>
+                        {this.state.default[14]}:
+                      </p>
+                    </div>
+                    <div className="col-md-9 results1">
+                      <p className="actors">
+                        {this.state.content[8]}
+                      </p>
+                      <p className="plot">
+                        {this.state.content[9]} 
+                      </p>
+                      <p>
+                        {this.state.content[10]}
+                      </p>
+                      <p>
+                        {this.state.content[11]}
+                      </p>
+                      <p>
+                        {this.state.content[12]}
+                      </p>
+                      <p>
+                        {this.state.content[14]}
+                      </p>
+                    </div>
+                  </div>
+                </div> 
+    } else if (this.state.content[0] == "False") {
+      return  <div className="rowe"> 
+                <div className="col-md-12 error">
+                  Unfortunatly, we can not find your movie. Try to search again. 
+                </div>
               </div>
     }
   }
 
   render() {
-    return  <div className="search-bar container">
-              <input className="search-input" type="text" value={this.state.value} placeholder="Search" onChange={::this._onInputValueChanged} />
-              <input type="button" value="Search" onClick={::this._onSearchClick} />
-              <div className="about-bar">
-                <div> {this._contentOnPage()} </div>
+    return  <div className="big-container">
+              <div className="container">
+                <div className="col-md-12 search">
+                  <input className="search-input" type="text" value={this.state.value} placeholder="Search" onChange={::this._onInputValueChanged} />
+                  <input type="button" className="btn btn-primary" value="Search" onClick={::this._onSearchClick} />
+                </div>  
               </div>
+                {this._contentOnPage()}
             </div>
   }
 }
