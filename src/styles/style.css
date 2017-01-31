@@ -8,7 +8,7 @@ body {
 }
 
 .container {
-  font-family: Monospace, Verdana, sans-serif;
+  font-family: Verdana, sans-serif;
 }
 
 .search-input {
@@ -44,7 +44,7 @@ body {
   transition-duration: 0.5s;
 }
 
-#image:hover {
+#image:hover, .picture img:hover {
   transform: scale(1.1);
   transition-duration: 0.5s;
 }
@@ -98,3 +98,19 @@ p.actors, p.plot {
   background: rgba(255, 255, 255, 0.6);;
 }
 
+.picture img {
+  height: 450px;
+  width: 100%;
+  border: 3px solid #000;
+  border-radius: 10px;
+  margin: 20px 0px;
+  transition-duration: 0.5s;
+}
+
+.off {
+  position: absolute;
+  top: -30px;
+  font-size: 20px;
+  color: #fff;
+  text-shadow: #000 0 0 3px;
+}

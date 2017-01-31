@@ -32,6 +32,7 @@ class SearchBar extends Component {
             information.push(data[key]);
             defaultInfo.push(key);
           }
+          console.log(data);
           this.setState({content: information});
           this.setState({default: defaultInfo});
           this.setState({stars: data.imdbRating});
@@ -143,9 +144,24 @@ class SearchBar extends Component {
                   </div>
                 </div> 
     } else if (this.state.content[0] == "False") {
-      return  <div className="rowe"> 
+      return  <div className="row"> 
                 <div className="col-md-12 error">
                   Unfortunatly, we can not find your movie. Try to search again. 
+                </div>
+              </div>
+    } else {
+      return  <div className="row">
+                <div className="col-md-12 info">
+                  <div className="col-md-4 picture">
+                    <p className="off">Recommendations:</p>
+                    <img src="../src/styles/img/warcraft.jpg" />
+                  </div>
+                  <div className="col-md-4 picture">
+                    <img src="../src/styles/img/suicide.jpg" />
+                  </div>
+                  <div className="col-md-4 picture">
+                    <img src="../src/styles/img/bat.jpg" />
+                  </div>
                 </div>
               </div>
     }
